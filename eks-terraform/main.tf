@@ -114,7 +114,7 @@ resource "aws_iam_instance_profile" "worker" {
 # ----------------------------
 data "aws_vpc" "main" {
   tags = {
-    Name = "Jumphost-vpc"
+    Name = "project-vpc"
   }
 }
 
