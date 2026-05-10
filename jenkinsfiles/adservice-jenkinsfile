@@ -50,7 +50,7 @@ pipeline {
        stage('Update Deployment file') {
             steps {
                 dir('kubernetes-files') {
-                    withCredentials([string(credentialsId: 'git-tokan', variable: 'git_token')]) {
+                    sshagent(['git-tokan']) {
                         sh '''
                             git config user.email "${GIT_EMAIL}"
                             git config user.name "${GIT_USER_NAME}"
