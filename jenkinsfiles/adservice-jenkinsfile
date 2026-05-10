@@ -40,7 +40,7 @@ pipeline {
                 script {
                     sh '''
                 aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 925290603916.dkr.ecr.ap-south-1.amazonaws.com    
-		docker tag adservice:latest 925290603916.dkr.ecr.ap-south-1.amazonaws.com/adservice:latest:${BUILD_NUMBER}
+		docker tag adservice:latest 925290603916.dkr.ecr.ap-south-1.amazonaws.com/adservice:${BUILD_NUMBER}
                     docker push adservice:latest 925290603916.dkr.ecr.ap-south-1.amazonaws.com/adservice:latest:${BUILD_NUMBER}
                     '''
                 }
