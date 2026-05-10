@@ -6,7 +6,7 @@ pipeline {
         GIT_EMAIL = "Yaswanth.arumulla@gmail.com"
         GIT_USER_NAME = "arumullayaswanth"
         IMAGE_NAME = "adservice"
-        REPO_URL = "242201296943.dkr.ecr.us-east-1.amazonaws.com/adservice"
+        REPO_URL = "925290603916.dkr.ecr.ap-south-1.amazonaws.com/adservice"
         YAML_FILE = "adservice.yaml"
     }
 
@@ -19,7 +19,7 @@ pipeline {
 
         stage('Checkout from Git') {
             steps {
-                git branch: 'master', url: 'https://github.com/arumullayaswanth/Microservices-E-Commerce-eks-project.git'
+                git branch: 'master', url: 'https://github.com/gsharma1298/Microservices-E-Commerce-eks-project.git'
             }
         }
 
@@ -39,9 +39,9 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 242201296943.dkr.ecr.us-east-1.amazonaws.com
-                    docker tag adservice:latest 242201296943.dkr.ecr.us-east-1.amazonaws.com/adservice:${BUILD_NUMBER}
-                    docker push 242201296943.dkr.ecr.us-east-1.amazonaws.com/adservice:${BUILD_NUMBER}
+                aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 925290603916.dkr.ecr.ap-south-1.amazonaws.com    
+		docker tag adservice:latest 925290603916.dkr.ecr.ap-south-1.amazonaws.com/adservice:latest:${BUILD_NUMBER}
+                    docker push adservice:latest 925290603916.dkr.ecr.ap-south-1.amazonaws.com/adservice:latest:${BUILD_NUMBER}
                     '''
                 }
             }
@@ -50,7 +50,7 @@ pipeline {
         stage('Update Deployment file') {
             steps {
                 dir('kubernetes-files') {
-                    withCredentials([string(credentialsId: 'my-git-pattoken', variable: 'git_token')]) {
+                    withCredentials([string(credentialsId: 'git-tokan', variable: 'git_token')]) {
                         sh '''
                             git config user.email "${GIT_EMAIL}"
                             git config user.name "${GIT_USER_NAME}"
