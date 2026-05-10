@@ -8,6 +8,7 @@ pipeline {
         IMAGE_NAME = "adservice"
         REPO_URL = "925290603916.dkr.ecr.ap-south-1.amazonaws.com/adservice"
         YAML_FILE = "adservice.yaml"
+        GIT_TOKAN = credentials('git-tokan')
     }
 
     stages {
@@ -65,7 +66,7 @@ pipeline {
 
                     git commit -m "Update ${IMAGE_NAME} Image to version ${BUILD_NUMBER}"
 
-                    git push origin master
+                     git push https://${GIT_TOKAN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master
                 '''
             }
         }
