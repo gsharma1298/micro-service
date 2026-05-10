@@ -7,13 +7,13 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "arumullaaluruu1"
+    bucket = "s3-bucket-1-govind-kemla"
     key    = "ec2/terraform.tfstate"
-    region = "us-east-1"
+    region = "ap-south-1"
   }
 
   required_version = ">= 1.6.3"
 }
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-south-1"
 }

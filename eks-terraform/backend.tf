@@ -7,9 +7,9 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "aluruarumullaa2"
+    bucket = "s3-bucket-2-govind-kemla"
     key    = "k8/terraform.tfstate"
-    region = "us-east-1"
+    region = "ap-south-1"
   }
 
   required_version = ">= 1.6.3"

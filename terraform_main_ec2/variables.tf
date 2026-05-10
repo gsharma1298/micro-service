@@ -2,19 +2,19 @@
 variable "region" {
   description = "AWS region"
   type = string
-  default = "us-east-1"
+  default = "ap-south-1"
 }
 
 variable "vpc-name" {
   description = "VPC Name for our Jumphost server"
   type = string
-  default = "Jumphost-vpc"
+  default = "project-vpc"
 }
 
 variable "igw-name" {
   description = "Internet Gate Way Name for our Jumphost server"
   type = string
-  default = "Jumphost-igw"
+  default = "project-igw"
 }
 
 variable "subnet-name1" {
@@ -45,43 +45,43 @@ variable "private_subnet_name2" {
 variable "rt-name" {
   description = "Route Table Name for our Jumphost server"
   type = string
-  default = "Jumphost-rt"
+  default = "project-rt"
 }
 
 variable "sg-name" {
   description = "Security Group for our Jumphost server"
   type = string
-  default = "Jumphost-sg"
+  default = "project-sg"
 }
 
 
 variable "iam-role" {
   description = "IAM Role for the Jumphost Server"
   type = string
-  default = "Jumphost-iam-role1"
+  default = "project-iam-role1"
 }
 
 variable "ami_id" {
   description = "AMI ID for the EC2 instance"
   type        = string
-  default     = "ami-0150ccaf51ab55a51" // Replace with the latest AMI ID for your region
+  default     = "ami-07a00cf47dbbc844c" // Replace with the latest AMI ID for your region
 }
 
 variable "instance_type" {
   description = "EC2 instance type"
   type        = string
-  default     = "t2.large"
+  default     = "c7i-flex.large"
 }
 
 variable "key_name" {
   description = "EC2 keypair"
   type        = string
-  default     = "us-east-1"
+  default     = "testkey"
 }
 
 variable "instance_name" {
   description = "EC2 Instance name for the jumphost server"
   type        = string
-  default     = "Jumphost-server"
+  default     = "project-server"
 }
 #
