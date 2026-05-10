@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"  # Change as needed
+  region = "ap-south-1"  # Change as needed
 }
 
 locals {
