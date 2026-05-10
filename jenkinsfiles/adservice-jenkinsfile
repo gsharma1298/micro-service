@@ -47,33 +47,23 @@ pipeline {
             }
         }
 
-        stage('Update Deployment file') {
-    steps {
-        dir('kubernetes-files') {
+       stage('Update Deployment file') {
+            steps {
+                dir('kubernetes-files') {
+                    withCredentials([string(credentialsId: 'git-tokan', variable: 'git_token')]) {
+                        sh '''
+                            git config user.email "${GIT_EMAIL}"
+                            git config user.name "${GIT_USER_NAME}"
+                            echo $BUILD_NUMBER
 
-            withCredentials([usernamePassword(
-                credentialsId: 'git-tokan',
-                usernameVariable: 'GIT_USERNAME',
-                passwordVariable: 'GIT_PASSWORD'
-            )]) {
-
-                sh '''
-                    git config user.email "${GIT_EMAIL}"
-                    git config user.name "${GIT_USER_NAME}"
-
-                    echo $BUILD_NUMBER
-
-                    sed -i "s#image:.*#image: ${REPO_URL}:$BUILD_NUMBER#g" ${YAML_FILE}
-
-                    git add .
-
-                    git commit -m "Update ${IMAGE_NAME} Image to version ${BUILD_NUMBER}"
-
-                    git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git HEAD:master
-                '''
+                            sed -i "s#image:.*#image: ${REPO_URL}:$BUILD_NUMBER#g" ${YAML_FILE}
+                            git add .
+                            git commit -m "Update ${IMAGE_NAME} Image to version ${BUILD_NUMBER}"
+                            git push https://${git_token}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master
+                        '''
+                    }
+                }
             }
         }
     }
-}
-}
 }
