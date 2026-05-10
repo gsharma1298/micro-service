@@ -138,7 +138,7 @@ data "aws_security_group" "selected" {
   vpc_id = data.aws_vpc.main.id
   filter {
     name   = "tag:Name"
-    values = ["Jumphost-sg"]
+    values = ["project-sg"]
   }
 }
 
