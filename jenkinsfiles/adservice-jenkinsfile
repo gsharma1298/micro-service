@@ -48,7 +48,6 @@ pipeline {
             }
         }
 
-       stage('Update Deployment file') {
     stage('Update Deployment file') {
             steps {
                 dir('kubernetes-files') {
@@ -68,5 +67,4 @@ pipeline {
             }
         }
     }
-}
 }
