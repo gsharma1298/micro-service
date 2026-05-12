@@ -33,7 +33,7 @@ pipeline {
                    docker tag checkoutservice:latest 925290603916.dkr.ecr.ap-south-1.amazonaws.com/checkoutservice:${BUILD_NUMBER}
 
                     #Run the following command to push this image to your newly created AWS repository:
-                    docker push 925290603916.dkr.ecr.ap-south-1.amazonaws.com/checkoutservice:latest:${BUILD_NUMBER}
+                    docker push 925290603916.dkr.ecr.ap-south-1.amazonaws.com/checkoutservice:${BUILD_NUMBER}
                     '''
                 }
             }
