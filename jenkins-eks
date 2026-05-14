@@ -10,7 +10,7 @@ pipeline {
 
         string(
             name: 'CLUSTER_NAME',
-            defaultValue: 'ekss',
+            defaultValue: 'eks',
             description: 'EKS Cluster Name'
         )
 
@@ -29,13 +29,11 @@ pipeline {
             }
 
             steps {
-                sh """
+                sh '''
                     aws eks create-cluster \
                     --name ${CLUSTER_NAME} \
                     --region ${AWS_REGION} \
-                    --role-arn arn:aws:iam::<ACCOUNT_ID>:role/<EKS_CLUSTER_ROLE> \
-                    --resources-vpc-config subnetIds=<SUBNET_ID_1>,<SUBNET_ID_2>,securityGroupIds=<SECURITY_GROUP_ID>
-                """
+                                '''
             }
         }
 
@@ -45,11 +43,11 @@ pipeline {
             }
 
             steps {
-                sh """
+                sh '''
                     aws eks update-kubeconfig \
                     --region ${AWS_REGION} \
                     --name ${CLUSTER_NAME}
-                """
+                '''
             }
         }
 
@@ -59,9 +57,9 @@ pipeline {
             }
 
             steps {
-                sh """
+                sh '''
                     kubectl get nodes -o wide
-                """
+                '''
             }
         }
 
@@ -71,11 +69,11 @@ pipeline {
             }
 
             steps {
-                sh """
+                sh '''
                     aws eks delete-cluster \
                     --name ${CLUSTER_NAME} \
                     --region ${AWS_REGION}
-                """
+                '''
             }
         }
     }
