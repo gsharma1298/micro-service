@@ -1,0 +1,82 @@
+pipeline {
+    agent any
+
+    parameters {
+        choice(
+            name: 'ACTION',
+            choices: ['CREATE', 'DELETE'],
+            description: 'Create or Delete EKS Cluster'
+        )
+
+        string(
+            name: 'CLUSTER_NAME',
+            defaultValue: 'eks',
+            description: 'EKS Cluster Name'
+        )
+
+        string(
+            name: 'AWS_REGION',
+            defaultValue: 'ap-south-1',
+            description: 'AWS Region'
+        )
+    }
+
+    stages {
+
+        stage('Create EKS Cluster') {
+            when {
+                expression { params.ACTION == 'CREATE' }
+            }
+
+            steps {
+                sh """
+                    aws eks create-cluster \
+                    --name ${CLUSTER_NAME} \
+                    --region ${AWS_REGION} \
+                    --role-arn arn:aws:iam::<ACCOUNT_ID>:role/<EKS_CLUSTER_ROLE> \
+                    --resources-vpc-config subnetIds=<SUBNET_ID_1>,<SUBNET_ID_2>,securityGroupIds=<SECURITY_GROUP_ID>
+                """
+            }
+        }
+
+        stage('Update kubeconfig') {
+            when {
+                expression { params.ACTION == 'CREATE' }
+            }
+
+            steps {
+                sh """
+                    aws eks update-kubeconfig \
+                    --region ${AWS_REGION} \
+                    --name ${CLUSTER_NAME}
+                """
+            }
+        }
+
+        stage('Get Nodes Output') {
+            when {
+                expression { params.ACTION == 'CREATE' }
+            }
+
+            steps {
+                sh """
+                    kubectl get nodes -o wide
+                """
+            }
+        }
+
+        stage('Delete EKS Cluster') {
+            when {
+                expression { params.ACTION == 'DELETE' }
+            }
+
+            steps {
+                sh """
+                    aws eks delete-cluster \
+                    --name ${CLUSTER_NAME} \
+                    --region ${AWS_REGION}
+                """
+            }
+        }
+    }
+}
