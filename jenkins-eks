@@ -10,7 +10,7 @@ pipeline {
 
         string(
             name: 'CLUSTER_NAME',
-            defaultValue: 'eks',
+            defaultValue: 'ekss',
             description: 'EKS Cluster Name'
         )
 
