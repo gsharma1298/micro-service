@@ -54,7 +54,7 @@ resource "aws_iam_role" "worker" {
 }
 
 resource "aws_iam_policy" "autoscaler" {
-  name = "yaswanth-eks-autoscaler-policy1"
+  name = "govind-eks-autoscaler-policy1"
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [{
