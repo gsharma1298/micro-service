@@ -1,4 +1,4 @@
 resource "aws_iam_instance_profile" "instance-profile" {
-  name = "yaswanth-profile"
+  name = "govind-profile"
   role = aws_iam_role.iam-role.name
 }
