@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "s3-bucket-2-govind-kemla"
+    bucket = "s3-bucket-2-govind-kemla1"
     key    = "ecr/terraform.tfstate"
     region = "ap-south-1"
   }
