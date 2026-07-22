@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "bucket1" {
-  bucket = "s3-bucket-1-govind-kemla"
+  bucket = "s3-bucket-1-govind-kemla1"
 
   tags = {
     Name        = "s3-bucket"
@@ -19,7 +19,7 @@ resource "aws_s3_bucket_versioning" "bucket1_versioning" {
 }
 
 resource "aws_s3_bucket" "bucket2" {
-  bucket = "s3-bucket-2-govind-kemla"
+  bucket = "s3-bucket-2-govind-kemla1"
 
   tags = {
     Name        = "s3-bucket"
