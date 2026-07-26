@@ -24,7 +24,7 @@ pipeline {
 
         stage('Terraform init') {
             steps {
-                dir('eks-terraform') {
+                dir('eks-ap-south-1') {
                     sh 'terraform init '
                 }
             }
@@ -32,7 +32,7 @@ pipeline {
 
         stage('Terraform validate') {
             steps {
-                dir('eks-terraform') {
+               dir('eks-ap-south-1') {
                     sh 'terraform validate'
                 }
             }
@@ -40,7 +40,7 @@ pipeline {
 
         stage('Terraform plan') {
             steps {
-                dir('eks-terraform') {
+               dir('eks-ap-south-1') {
                     sh 'terraform plan'
                 }
             }
@@ -51,7 +51,7 @@ pipeline {
                 expression { params.ACTION == 'apply' }
             }
             steps {
-                dir('eks-terraform') {
+                dir('eks-ap-south-1') {
                     sh 'terraform apply -auto-approve'
                 }
             }
@@ -62,7 +62,7 @@ pipeline {
                 expression { params.ACTION == 'destroy' }
             }
             steps {
-                dir('eks-terraform') {
+               dir('eks-ap-south-1') {
                     sh 'terraform destroy -auto-approve'
                 }
             }
