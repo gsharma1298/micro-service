@@ -46,72 +46,11 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-kiro install
+AMAZON AI FOR TROUBLESHOOTIN  ---  kiro   INSTALLATION STEPS
 
 curl -fsSL https://cli.kiro.dev/install | bash
 
 source ~/.bashrc
-
-
-
 
 
 
