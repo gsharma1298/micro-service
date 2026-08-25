@@ -1,3 +1,109 @@
+       MULTI-REGION EKS + ARGO CD PROJECT ARCHITECTURE
+===============================================================
+
+                         USERS / INTERNET
+                                |
+                         hr82.online
+                                v
+                     +--------------------+
+                     |    AWS Route 53    |
+                     |   Failover Routing |
+                     |                    |
+                     | Health Checks      |
+                     +---------+----------+
+                               |
+                 +-------------+-------------+
+                 |                           |
+          PRIMARY REGION              SECONDARY REGION
+           ap-south-1                  us-east-1
+                 v                           v
+        +----------------+          +----------------+
+        |      ALB       |          |      ALB       |
+        |   Primary ALB  |          | Secondary ALB  |
+        +--------+-------+          +--------+-------+
+                 v                           v
+        +----------------+          +----------------+
+        |   EKS Cluster  |          |   EKS Cluster  |
+        |  project-eks   |          | project-eks-   |
+        |                |          |   us-east-1    |
+        +--------+-------+          +--------+-------+
+                 v                           v
+        +----------------+          +----------------+
+        | Kubernetes     |          | Kubernetes     |
+        | Deployment     |          | Deployment     |
+        |                |          |                |
+        | Application    |          | Application    |
+        | Pods           |          | Pods           |
+        +--------+-------+          +--------+-------+
+                 |                           |
+                 +-------------+-------------+
+                               |
+                     APPLICATION TRAFFIC
+                               |
+                               v
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 kiro install
 
 curl -fsSL https://cli.kiro.dev/install | bash
