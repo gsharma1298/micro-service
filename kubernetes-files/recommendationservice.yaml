@@ -28,7 +28,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: 623577189957.dkr.ecr.ap-south-1.amazonaws.com/recommendationservice:1
+        image: 623577189957.dkr.ecr.ap-south-1.amazonaws.com/recommendationservice:2
         ports:
         - containerPort: 8080
         readinessProbe:
