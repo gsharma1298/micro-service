@@ -40,6 +40,7 @@ data "aws_security_group" "default" {
   name   = "default"
 }
 
+
 # --------------------------------------------------
 # IAM Role for EKS Cluster
 # --------------------------------------------------
@@ -178,6 +179,12 @@ resource "aws_eks_cluster" "eks" {
   name     = "us-eks"
   role_arn = aws_iam_role.master.arn
 
+    # EKS API Access Configuration
+  access_config {
+    authentication_mode                         = "API_AND_CONFIG_MAP"
+    bootstrap_cluster_creator_admin_permissions = true
+
+  
   vpc_config {
     subnet_ids = slice(data.aws_subnets.default.ids, 0, 2)
 
