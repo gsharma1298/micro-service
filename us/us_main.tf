@@ -175,7 +175,7 @@ resource "aws_iam_instance_profile" "worker" {
 # --------------------------------------------------
 
 resource "aws_eks_cluster" "eks" {
-  name     = "us-east-1"
+  name     = "us-eks"
   role_arn = aws_iam_role.master.arn
 
   vpc_config {
@@ -223,7 +223,7 @@ resource "aws_eks_node_group" "node_grp" {
   }
 
   scaling_config {
-    desired_size = 1
+    desired_size = 2
     max_size     = 10
     min_size     = 1
   }
