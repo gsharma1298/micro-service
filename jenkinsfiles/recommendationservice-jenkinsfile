@@ -52,15 +52,15 @@ pipeline {
                         aws ecr get-login-password --region ap-south-1 | \
                         docker login \
                         --username AWS \
-                        --password-stdin 623577189957.dkr.ecr.ap-south-1.amazonaws.com
+                        --password-stdin 253291597598.dkr.ecr.ap-south-1.amazonaws.com
 
                         # Tag Docker image
                         docker tag recommendationservice:latest \
-                        623577189957.dkr.ecr.ap-south-1.amazonaws.com/recommendationservice:${BUILD_NUMBER}
+                        253291597598.dkr.ecr.ap-south-1.amazonaws.com/recommendationservice:${BUILD_NUMBER}
 
                         # Push Docker image
                         docker push \
-                        623577189957.dkr.ecr.ap-south-1.amazonaws.com/recommendationservice:${BUILD_NUMBER}
+                        253291597598.dkr.ecr.ap-south-1.amazonaws.com/recommendationservice:${BUILD_NUMBER}
                     '''
                 }
             }
@@ -72,7 +72,7 @@ pipeline {
                 GIT_EMAIL = "gsharma1298@gmail.com"
                 GIT_USER_NAME = "gsharma1298"
                 IMAGE_NAME = "recommendationservice"
-                REPO_URL = "623577189957.dkr.ecr.ap-south-1.amazonaws.com/recommendationservice"
+                REPO_URL = "253291597598.dkr.ecr.ap-south-1.amazonaws.com/recommendationservice"
                 YAML_FILE = "recommendationservice.yaml"
             }
 
